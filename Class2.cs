@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using HarmonyLib;
 using BepInEx;
@@ -29,7 +29,7 @@ namespace NoClip
     {
         static bool flying = false;
         static bool notclipping = false;
-        static float speed = 12f;
+        static float kissingmonkeys = 10f;
         private static void Postfix(GorillaLocomotion.Player __instance)
         {
             if (!PhotonNetwork.CurrentRoom.IsVisible || !PhotonNetwork.InRoom)
@@ -42,7 +42,7 @@ namespace NoClip
 
                     if (flying)
                     {
-                        __instance.transform.position = new Vector3(0f, 0f, 0f);
+                        __instance.bodyCollider.attachedRigidbody.velocity = __instance.leftHandTransform.transform.forward * kissingmonkeys;
                     }
                 }
             }
