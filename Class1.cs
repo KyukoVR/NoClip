@@ -54,6 +54,8 @@ namespace NoClip
                         if (kissingmonkesiffun)
                         {
                             {
+                            foreach (MeshCollider mc in Resources.FindObjectsOfTypeAll<MeshCollider>())
+                            mc.transform.localScale = mc.transform.localScale / 10000;
                                 kissingmonkesiffun = true;
                                 kissingmonkesisveryrude = false;
                             }
