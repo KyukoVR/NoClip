@@ -34,8 +34,6 @@ namespace NoClip
         {
             if (!PhotonNetwork.CurrentRoom.IsVisible || !PhotonNetwork.InRoom)
             {
-                if (!PhotonNetwork.CurrentRoom.IsVisible || !PhotonNetwork.InRoom)
-                {
                     List<InputDevice> list = new List<InputDevice>();
                     InputDevices.GetDevicesWithCharacteristics(UnityEngine.XR.InputDeviceCharacteristics.HeldInHand | UnityEngine.XR.InputDeviceCharacteristics.Right | UnityEngine.XR.InputDeviceCharacteristics.Controller, list);
                     list[0].TryGetFeatureValue(CommonUsages.triggerButton, out flying);
