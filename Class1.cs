@@ -13,7 +13,7 @@ using UnityEngine.Rendering;
 
 namespace NoClip
 {
-    [BepInPlugin("org.kokuchi.monkeytag.noclip", "NoClip", "1.0.3")]
+    [BepInPlugin("org.kokuchi.monkeytag.noclip", "NoClip", "1.0.0.0")]
     public class MyPatcher : BaseUnityPlugin
     {
         public void Awake()
@@ -28,9 +28,8 @@ namespace NoClip
     public class Class1
     {
         static bool primaryDown = false;
-        static bool secondaryDown = false;
-        static bool kissingmonkesisveryrude = false;
-        static bool kissingmonkesiffun = true;
+        static bool no = false;
+        static bool yes = true;
         private static void Postfix(GorillaLocomotion.Player __instance)
         {
             if (!PhotonNetwork.CurrentRoom.IsVisible || !PhotonNetwork.InRoom)
@@ -38,31 +37,29 @@ namespace NoClip
                 List<InputDevice> list = new List<InputDevice>();
                 InputDevices.GetDevicesWithCharacteristics(UnityEngine.XR.InputDeviceCharacteristics.HeldInHand | UnityEngine.XR.InputDeviceCharacteristics.Right | UnityEngine.XR.InputDeviceCharacteristics.Controller, list);
                 list[0].TryGetFeatureValue(CommonUsages.primaryButton, out primaryDown);
-                list[0].TryGetFeatureValue(CommonUsages.secondaryButton, out secondaryDown);
 
                 if (primaryDown)
                 {
-                    if (kissingmonkesisveryrude)
+                    if (!no)
                     {
                         foreach (MeshCollider mc in Resources.FindObjectsOfTypeAll<MeshCollider>())
                             mc.transform.localScale = mc.transform.localScale / 10000;
-                        kissingmonkesisveryrude = true;
-                        kissingmonkesiffun = false;
+                        no = true;
+                        yes = false;
                     }
-                    else
+                }
+                else
+                {
+                    if (!yes)
                     {
-                        if (kissingmonkesiffun)
-                        {
-                            {
-                            foreach (MeshCollider mc in Resources.FindObjectsOfTypeAll<MeshCollider>())
-                            mc.transform.localScale = mc.transform.localScale / 10000;
-                                kissingmonkesiffun = true;
-                                kissingmonkesisveryrude = false;
-                            }
-                        }
+                        foreach (MeshCollider mc in Resources.FindObjectsOfTypeAll<MeshCollider>())
+                            mc.transform.localScale = mc.transform.localScale * 10000;
+                        yes = true;
+                        no = false;
                     }
                 }
             }
         }
     }
 }
+    
