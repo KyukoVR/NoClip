@@ -13,7 +13,7 @@ using UnityEngine.Rendering;
 
 namespace NoClip
 {
-    [BepInPlugin("org.kokuchi.monkeytag.noclip", "NoClip", "1.0.0.0")]
+    [BepInPlugin("org.kokuchi.monkeytag.noclip", "NoClip", "1.0.3")]
     public class MyPatcher : BaseUnityPlugin
     {
         public void Awake()
